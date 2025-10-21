@@ -7,7 +7,7 @@
  *
  * Return: result of multiplication
  */
-int mu1(int a, int b)
-{
+ int mu1(int a, int b)
+ {
     return (a * b);
-}
+ }
