@@ -21,18 +21,18 @@ return (NULL);
 
 /* Calculate the length of the string manually */
 while (str[length] != '\0')
-	length++;
+length++;
 
 /* Allocate memory for duplicate (length + 1 for null terminator) */
 duplicate = malloc(sizeof(char) * (length + 1));
 
 /* Return Null if malloc fails */
 if (duplicate == NULL)
-	return (NULL);
+return (NULL);
 
 /* Copy each character manually */
 for (i = 0; i <= length; i++)
-	duplicate[i] = str[i];
+duplicate[i] = str[i];
 
 return (duplicate);
 }
