@@ -1,1 +1,1 @@
-functions - nested loops
+C-malllloc, free
