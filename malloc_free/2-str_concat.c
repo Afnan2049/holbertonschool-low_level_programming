@@ -13,27 +13,27 @@
  */
 char *str_concat(char *s1, char *s2)
 {
-        char *concat; /* declaring pointer for new concated string */
-        int len1, len2; /* variables to store lengths of strings */
+        char *concat;
+        int len1, len2;
 
 
-        if (s1 == NULL) /* if string1 or string2 is null; treat as empty string*/
+        if (s1 == NULL)
 		s1 = "";
         if (s2 == NULL)
-                s2 = "";
+		s2 = "";
 
 
-        len1 = strlen(s1); /* calculate length of string1 and s2, excludig null terminator */
-        len2 = strlen(s2);
+        len1 = strlen(s1);
+	len2 = strlen(s2);
 
 
-        concat = malloc(sizeof(char) * (len1 + len2 + 1); /* allocate memory for: s1 chars + s2 char + null terminator*/
-       if (concat == NULL)
-	       return (NULL);
+        concat = malloc(sizeof(char) * (len1 + len2 + 1));
+			
+	if (concat == NULL)
+		return (NULL);
 	       
 	       
 	       strcpy(concat, s1);
-	       
 	       
 	       strcat(concat, s2);
 
