@@ -32,8 +32,7 @@ for (i = 0; i < len1; i++)
 	concat[i] = s1[i];
 for (j = 0; j < len2; j++, i++)
 concat[i] = s2[j];
-concat[i] = '\0'
+concat[i] = '\0';
 
 return (concat);
 }
-
