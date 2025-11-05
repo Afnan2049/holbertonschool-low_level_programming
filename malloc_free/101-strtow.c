@@ -2,30 +2,25 @@
 #include <stdlib.h>
 
 /**
-* count_words - Counts the number of words in a string
-* @str: The string to count words in
+* word_count - counts the number of words in a string
+* @str: string to check
 *
-* Return: Number of wordsin the string
+* Return: number of words
 */
-int count_words(char *str)
+int word_count(char *str)
 {
-int count = 0, in_word = 0, i = 0;
-
-if (str == NULL)
-return (0);
+int i = 0, count = 0;
 
 while (str[i])
 {
-if (str[i] == ' ')
-{
-in_word = 0;
-}
-else if (!in_word)
-{
-in_word = 1;
-count++;
-}
+while (str[i] == ' ')
 i++;
+if (str[i] != '\0')
+{
+count++;
+while (str[i] != ' ' && str[i] != '\0')
+i++;
+}
 }
 return (count);
 }
