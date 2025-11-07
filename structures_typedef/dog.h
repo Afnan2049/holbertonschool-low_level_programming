@@ -3,17 +3,22 @@
 
 /**
 * struct dog - Structure representing a dog
-* @name: Name of dog (string)
-* @age: Age of dog (floating point number)
-* @owner: Owner's name of the dog (string)
-*
-* Description: This structure defines a dog with its name, age and owner's name.*
+* @name: Name of the dog (string)
+* @age: Age of the dog (floating point number)
+* @owner: Owner of the dog (string)*
 */
 struct dog
 {
 	char *name;
-	float *age;
+	float age;
 	char *owner;
 };
 
-#enfif
+typedef struct dog dog_t;
+
+void init_dog(struct dog *d, char *name, float age, char *owner);
+void print_dog(struct dog *d);
+dog_t *new_dog(char *name, float age, char *owner);
+void free_dog(dog_t *d);
+
+#endif /* DOG_H */
