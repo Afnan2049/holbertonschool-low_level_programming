@@ -8,64 +8,39 @@
 * @ht: The hash table to add/update the key/value to
 * @key: The key (cannot be an empty string)
 * @value: The value associated with the key (must be duplicated, can be empty)
-*
 * Return: 1 if succeeded, 0 otherwise
 */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-hash_node_t *new_node, *temp;
-unsigned long int index;
-char *value_copy;
+unsigned long int idx;
+hash_node_t *node, *tmp;
+char *val_copy;
 
-/* Check for invalid inputs */
-if (ht == NULL || key == NULL || *key == '\0')
+if (!ht || !key || !*key || !value)
 return (0);
-
-/* Duplicate the value string */
-value_copy = strdup(value);
-if (value_copy == NULL)
+val_copy = strdup(value);
+if (!val_copy)
 return (0);
-
-/* Get the index for this key */
-index = key_index((const unsigned char *)key, ht->size);
-
-/* Check if key already exists in the chain */
-temp = ht->array[index];
-while (temp != NULL)
+idx = key_index((unsigned char *)key, ht->size);
+tmp = ht->array[idx];
+while (tmp)
 {
-if (strcmp(temp->key, key) == 0)
+if (strcmp(tmp->key, key) == 0)
 {
-/* Key exists - update the value */
-free(temp->value);
-temp->value = value_copy;
+free(tmp->value);
+tmp->value = val_copy;
 return (1);
 }
-temp = temp->next;
+tmp = tmp->next;
 }
-
-/* Key doesn't exist - create new node */
-new_node = malloc(sizeof(hash_node_t));
-if (new_node == NULL)
-{
-free(value_copy);
-return (0);
-}
-
-/* Duplicate the key string */
-new_node->key = strdup(key);
-if (new_node->key == NULL)
-{
-free(value_copy);
-free(new_node);
-return (0);
-}
-
-/* Set up the new node */
-new_node->value = value_copy;
-
-/* Insert at beginning of chain (handles collisions) */
-new_node->next = ht->array[index];
-ht->array[index] = new_node;
-
+node = malloc(sizeof(hash_node_t));
+if (!node)
+return (free(val_copy), 0);
+node->key = strdup(key);
+if (!node->key)
+return (free(val_copy), free(node), 0);
+node->value = val_copy;
+node->next = ht->array[idx];
+ht->array[idx] = node;
 return (1);
 }
